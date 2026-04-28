@@ -1,4 +1,5 @@
 /// App-wide exception hierarchy for consistent error handling
+library;
 
 abstract class AppException implements Exception {
   final String message;
@@ -20,16 +21,11 @@ abstract class AppException implements Exception {
 /// Network-related exceptions
 class NetworkException extends AppException {
   NetworkException({
-    required String message,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    required super.message,
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Server-side exceptions (5xx errors)
@@ -37,17 +33,12 @@ class ServerException extends AppException {
   final int? statusCode;
 
   ServerException({
-    required String message,
+    required super.message,
     this.statusCode,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Client-side exceptions (4xx errors)
@@ -55,32 +46,22 @@ class ClientException extends AppException {
   final int? statusCode;
 
   ClientException({
-    required String message,
+    required super.message,
     this.statusCode,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Authentication-related exceptions
 class AuthException extends AppException {
   AuthException({
-    required String message,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    required super.message,
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Validation-related exceptions
@@ -88,32 +69,22 @@ class ValidationException extends AppException {
   final Map<String, String>? fieldErrors;
 
   ValidationException({
-    required String message,
+    required super.message,
     this.fieldErrors,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Cache-related exceptions
 class CacheException extends AppException {
   CacheException({
-    required String message,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    required super.message,
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Payment-related exceptions
@@ -121,60 +92,40 @@ class PaymentException extends AppException {
   final String? transactionId;
 
   PaymentException({
-    required String message,
+    required super.message,
     this.transactionId,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Geolocation-related exceptions
 class LocationException extends AppException {
   LocationException({
-    required String message,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    required super.message,
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Security-related exceptions
 class SecurityException extends AppException {
   SecurityException({
-    required String message,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    required super.message,
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
 
 /// Generic/unknown exceptions
 class UnknownException extends AppException {
   UnknownException({
-    required String message,
-    String? code,
-    dynamic originalException,
-    StackTrace? stackTrace,
-  }) : super(
-         message: message,
-         code: code,
-         originalException: originalException,
-         stackTrace: stackTrace,
-       );
+    required super.message,
+    super.code,
+    super.originalException,
+    super.stackTrace,
+  });
 }
