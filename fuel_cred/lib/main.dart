@@ -30,7 +30,7 @@ void main() async {
 }
 
 class FuelPayApp extends StatelessWidget {
-  const FuelPayApp({Key? key}) : super(key: key);
+  const FuelPayApp({super.key});
 
   @override
   Widget build(BuildContext context) {

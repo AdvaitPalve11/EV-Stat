@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../theme/theme_extended.dart';
+import '../theme/theme_extended.dart';
 
 /// FuelPay Glassmorphic Card - Premium transparent card with blur effect
 class GlassmorphicCard extends StatelessWidget {
@@ -15,7 +15,7 @@ class GlassmorphicCard extends StatelessWidget {
   final LinearGradient? gradient;
 
   const GlassmorphicCard({
-    Key? key,
+    super.key,
     required this.child,
     this.padding,
     this.borderRadius = 20,
@@ -25,7 +25,7 @@ class GlassmorphicCard extends StatelessWidget {
     this.borderColor = FuelPayTheme.borderLight,
     this.shadows,
     this.gradient,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class PremiumCard extends StatelessWidget {
   final LinearGradient? gradient;
 
   const PremiumCard({
-    Key? key,
+    super.key,
     required this.child,
     this.padding,
     this.borderRadius = 20,
@@ -84,7 +84,7 @@ class PremiumCard extends StatelessWidget {
     this.borderColor = FuelPayTheme.borderLight,
     this.shadows,
     this.gradient,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -114,13 +114,13 @@ class AnimatedFuelPayCard extends StatefulWidget {
   final EdgeInsets? margin;
 
   const AnimatedFuelPayCard({
-    Key? key,
+    super.key,
     required this.child,
     this.padding,
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.easeOut,
     this.margin,
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedFuelPayCard> createState() => _AnimatedFuelPayCardState();

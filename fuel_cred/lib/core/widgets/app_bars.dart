@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../theme/theme_extended.dart';
+import '../theme/theme_extended.dart';
 
 /// FuelPay Custom AppBar - Premium glassmorphic app bar
 class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,7 +16,7 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
   final PreferredSizeWidget? bottom;
 
   const FuelPayAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.leading,
     this.actions,
@@ -27,7 +27,7 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = FuelPayTheme.charcoalCard,
     this.textColor = FuelPayTheme.textPrimary,
     this.bottom,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize =>
@@ -94,11 +94,11 @@ class MinimalGlassAppBar extends StatelessWidget
   final List<Widget>? actions;
 
   const MinimalGlassAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     this.actions,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(80);
@@ -162,11 +162,11 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onClear;
 
   const SearchAppBar({
-    Key? key,
+    super.key,
     required this.onSearchChanged,
     this.hintText = 'Search...',
     this.onClear,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

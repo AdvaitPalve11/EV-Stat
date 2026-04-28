@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../config/constants.dart';
 
 /// FuelPay Theme Extension - Advanced glassmorphism effects
 extension FuelPayThemeExtension on ThemeData {
@@ -124,7 +123,7 @@ class FuelPayTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: charcoalCard,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -334,7 +333,7 @@ class FuelPayTheme {
       ),
 
       // Dialog Theme
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: charcoalCard,
         elevation: 0,
         shape: RoundedRectangleBorder(
