@@ -93,8 +93,7 @@ flutter test
 
 ## Documentation
 
-- [Phase 1 Summary](PHASE_1_COMPLETE.md)
-- [Phase 2 Summary](PHASE_2_COMPLETE.md)
+- [Project Status](PROJECT_STATUS.md)
 - [Architecture Guide](docs/ARCHITECTURE.md)
 - [Full Project Overview](FUELPAY_README.md)
 

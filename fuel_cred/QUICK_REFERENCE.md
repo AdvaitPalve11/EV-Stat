@@ -90,4 +90,4 @@ All foundation is set. Next phase (Phase 2: Theme System) will:
 ## 🔗 Documentation
 - [FUELPAY_README.md](../FUELPAY_README.md) - Project overview
 - [ARCHITECTURE.md](../docs/ARCHITECTURE.md) - Clean architecture guide
-- [PHASE_1_COMPLETE.md](../PHASE_1_COMPLETE.md) - Phase completion details
+- [PROJECT_STATUS.md](../PROJECT_STATUS.md) - Phase and progress summary
