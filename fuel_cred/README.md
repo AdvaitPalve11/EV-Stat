@@ -1,16 +1,120 @@
-# fuel_cred
+# FuelPay
 
-A new Flutter project.
+FuelPay is a premium Flutter fintech app for fuel payments, reward tracking, wallet management, and station-based checkout flows. The app is being built with a clean architecture approach and a modular, feature-first structure so each domain can evolve independently.
+
+## What FuelPay Does
+
+- Pay for fuel with UPI-backed payment flows
+- Track fuel spend, reward credits, and transaction history
+- Unlock tier-based rewards from Bronze to Diamond
+- Validate station transactions with QR and geofence checks
+- Support wallet, analytics, merchant, and fraud-prevention flows
+
+## Current Status
+
+FuelPay is under active development. The repository currently includes:
+
+- Core configuration and environment handling
+- Centralized routing and logging
+- Premium dark theme and glassmorphic design system
+- Reusable UI widgets and shared component library
+- Phase-based documentation and branch workflow
+
+## Tech Stack
+
+- Flutter 3.x
+- Dart 3.9+
+- Riverpod
+- GoRouter
+- Dio
+- Hive
+- Flutter Secure Storage
+- Firebase
+- Razorpay Flutter
+- Google Maps Flutter
+- Geolocator
+- Lottie
+- Google Fonts
+
+## Architecture
+
+The project follows a clean architecture layout:
+
+- `lib/core` for shared configuration, theme, utilities, and widgets
+- `lib/features` for feature-specific modules
+- `lib/main.dart` for application bootstrap
+
+## Project Structure
+
+```text
+lib/
+├── core/
+│   ├── config/
+│   ├── theme/
+│   ├── utils/
+│   └── widgets/
+├── features/
+└── main.dart
+```
+
+## Key UI Systems
+
+- Glassmorphic cards and surfaces
+- Custom app bars and premium buttons
+- Styled text fields and OTP input
+- Loading, empty, and error states
+- Gamification widgets for tiers and streaks
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK installed
+- Dart SDK compatible with the Flutter installation
+- Android Studio, Xcode, or VS Code depending on target platform
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Install Dependencies
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+```
+
+### Run the App
+
+```bash
+flutter run
+```
+
+### Run Tests
+
+```bash
+flutter test
+```
+
+## Documentation
+
+- [Phase 1 Summary](PHASE_1_COMPLETE.md)
+- [Phase 2 Summary](PHASE_2_COMPLETE.md)
+- [Architecture Guide](docs/ARCHITECTURE.md)
+- [Full Project Overview](FUELPAY_README.md)
+
+## Contributing
+
+Contributions should follow the feature-branch workflow used in this repository.
+
+1. Create a feature branch from `develop`
+2. Make focused commits with clear messages
+3. Keep changes scoped to the current phase or fix
+4. Open a pull request back into `develop`
+5. Merge only after validation passes
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow.
+
+## Security and Privacy
+
+- Security reporting: [SECURITY.md](SECURITY.md)
+- Privacy policy: [PRIVACY_POLICY.md](PRIVACY_POLICY.md)
+
+## License
+
+FuelPay is released under the [MIT License](LICENSE).
