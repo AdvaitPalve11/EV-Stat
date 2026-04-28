@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/theme_extended.dart';
+import '../theme/theme_extended.dart';
 
 /// Reward Tier Badge - Display user's current reward tier
 class RewardTierBadge extends StatelessWidget {
@@ -9,12 +9,12 @@ class RewardTierBadge extends StatelessWidget {
   final int maxCredits;
 
   const RewardTierBadge({
-    Key? key,
+    super.key,
     required this.tierName,
     required this.multiplier,
     required this.currentCredits,
     required this.maxCredits,
-  }) : super(key: key);
+  });
 
   Color _getTierColor() {
     return switch (tierName.toLowerCase()) {
@@ -105,10 +105,10 @@ class StreakMeter extends StatelessWidget {
   final int streakBonus; // Percentage bonus
 
   const StreakMeter({
-    Key? key,
+    super.key,
     required this.currentStreak,
     required this.streakBonus,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -190,11 +190,11 @@ class TierLadder extends StatelessWidget {
   final List<int> tierCreditsRequired;
 
   const TierLadder({
-    Key? key,
+    super.key,
     this.tiers = const ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond'],
     required this.currentTierIndex,
     this.tierCreditsRequired = const [0, 100, 500, 1500, 5000],
-  }) : super(key: key);
+  });
 
   Color _getTierColor(int index) {
     return switch (tiers[index].toLowerCase()) {
@@ -338,14 +338,14 @@ class AchievementBadge extends StatelessWidget {
   final String? unlockedDate;
 
   const AchievementBadge({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.icon,
     required this.color,
     this.isUnlocked = false,
     this.unlockedDate,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

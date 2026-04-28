@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../theme/theme_extended.dart';
+import '../theme/theme_extended.dart';
 
 /// FuelPay Text Field - Premium styled input field
 class FuelPayTextField extends StatefulWidget {
@@ -23,7 +23,7 @@ class FuelPayTextField extends StatefulWidget {
   final TextCapitalization textCapitalization;
 
   const FuelPayTextField({
-    Key? key,
+    super.key,
     required this.label,
     this.hint,
     this.controller,
@@ -41,7 +41,7 @@ class FuelPayTextField extends StatefulWidget {
     this.inputFormatters,
     this.isRequired = false,
     this.textCapitalization = TextCapitalization.none,
-  }) : super(key: key);
+  });
 
   @override
   State<FuelPayTextField> createState() => _FuelPayTextFieldState();
@@ -200,11 +200,11 @@ class OTPInputField extends StatefulWidget {
   final TextEditingController? controller;
 
   const OTPInputField({
-    Key? key,
+    super.key,
     this.length = 6,
     required this.onCompleted,
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   State<OTPInputField> createState() => _OTPInputFieldState();

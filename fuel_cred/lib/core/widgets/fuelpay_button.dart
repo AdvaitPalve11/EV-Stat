@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/theme_extended.dart';
+import '../theme/theme_extended.dart';
 
 /// FuelPay Button - Premium button with multiple variants
 class FuelPayButton extends StatefulWidget {
@@ -13,7 +13,7 @@ class FuelPayButton extends StatefulWidget {
   final EdgeInsets? padding;
 
   const FuelPayButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.variant = FuelPayButtonVariant.primary,
@@ -22,7 +22,7 @@ class FuelPayButton extends StatefulWidget {
     this.isLoading = false,
     this.isEnabled = true,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   State<FuelPayButton> createState() => _FuelPayButtonState();
@@ -303,6 +303,7 @@ class _FuelPayButtonState extends State<FuelPayButton>
         horizontal: 32,
         vertical: 18,
       ),
+      _ => const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
     };
   }
 }

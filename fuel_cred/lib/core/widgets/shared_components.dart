@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/theme_extended.dart';
+import '../theme/theme_extended.dart';
 
 /// FuelPay Loading Indicator - Custom branded loader
 class FuelPayLoadingIndicator extends StatefulWidget {
@@ -7,10 +7,10 @@ class FuelPayLoadingIndicator extends StatefulWidget {
   final Color color;
 
   const FuelPayLoadingIndicator({
-    Key? key,
+    super.key,
     this.size = 48,
     this.color = FuelPayTheme.neonGreen,
-  }) : super(key: key);
+  });
 
   @override
   State<FuelPayLoadingIndicator> createState() =>
@@ -94,11 +94,11 @@ class SkeletalLoader extends StatefulWidget {
   final double borderRadius;
 
   const SkeletalLoader({
-    Key? key,
+    super.key,
     this.height = 16,
     this.width = double.infinity,
     this.borderRadius = 8,
-  }) : super(key: key);
+  });
 
   @override
   State<SkeletalLoader> createState() => _SkeletalLoaderState();
@@ -154,13 +154,13 @@ class EmptyState extends StatelessWidget {
   final double iconSize;
 
   const EmptyState({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     this.icon = Icons.inbox_outlined,
     this.actionButton,
     this.iconSize = 80,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -219,12 +219,12 @@ class ErrorState extends StatelessWidget {
   final IconData icon;
 
   const ErrorState({
-    Key? key,
+    super.key,
     required this.title,
     required this.message,
     required this.onRetry,
     this.icon = Icons.error_outline,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -279,11 +279,11 @@ class DividerWithText extends StatelessWidget {
   final Color dividerColor;
 
   const DividerWithText({
-    Key? key,
+    super.key,
     required this.text,
     this.textColor = FuelPayTheme.textTertiary,
     this.dividerColor = FuelPayTheme.borderLight,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -312,11 +312,11 @@ class AnimatedListItem extends StatefulWidget {
   final Duration duration;
 
   const AnimatedListItem({
-    Key? key,
+    super.key,
     required this.index,
     required this.child,
     this.duration = const Duration(milliseconds: 300),
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedListItem> createState() => _AnimatedListItemState();
@@ -360,7 +360,7 @@ class _AnimatedListItemState extends State<AnimatedListItem>
 class ShimmerEffect extends StatefulWidget {
   final Widget child;
 
-  const ShimmerEffect({Key? key, required this.child}) : super(key: key);
+  const ShimmerEffect({super.key, required this.child});
 
   @override
   State<ShimmerEffect> createState() => _ShimmerEffectState();

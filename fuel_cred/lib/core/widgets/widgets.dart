@@ -1,3 +1,5 @@
+library fuelpay_widgets;
+
 /// Core Widgets Library Export
 /// All reusable UI components in one place
 
