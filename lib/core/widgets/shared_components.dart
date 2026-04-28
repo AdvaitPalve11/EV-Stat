@@ -414,3 +414,25 @@ class _ShimmerEffectState extends State<ShimmerEffect>
     );
   }
 }
+
+/// Custom Pull-to-Refresh Indicator - Handles pull requests
+class FuelPayRefreshIndicator extends StatelessWidget {
+  final Widget child;
+  final Future<void> Function() onRefresh;
+
+  const FuelPayRefreshIndicator({
+    super.key,
+    required this.child,
+    required this.onRefresh,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      color: FuelPayTheme.neonGreen,
+      backgroundColor: FuelPayTheme.charcoalCard,
+      child: child,
+    );
+  }
+}
