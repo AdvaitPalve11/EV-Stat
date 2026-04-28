@@ -25,11 +25,11 @@ class NetworkException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Server-side exceptions (5xx errors)
@@ -43,11 +43,11 @@ class ServerException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Client-side exceptions (4xx errors)
@@ -61,11 +61,11 @@ class ClientException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Authentication-related exceptions
@@ -76,11 +76,11 @@ class AuthException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Validation-related exceptions
@@ -94,11 +94,11 @@ class ValidationException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Cache-related exceptions
@@ -109,11 +109,11 @@ class CacheException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Payment-related exceptions
@@ -127,11 +127,11 @@ class PaymentException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Geolocation-related exceptions
@@ -142,11 +142,11 @@ class LocationException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Security-related exceptions
@@ -157,11 +157,11 @@ class SecurityException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
 
 /// Generic/unknown exceptions
@@ -172,9 +172,9 @@ class UnknownException extends AppException {
     dynamic originalException,
     StackTrace? stackTrace,
   }) : super(
-    message: message,
-    code: code,
-    originalException: originalException,
-    stackTrace: stackTrace,
-  );
+         message: message,
+         code: code,
+         originalException: originalException,
+         stackTrace: stackTrace,
+       );
 }
