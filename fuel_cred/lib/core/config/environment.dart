@@ -12,8 +12,7 @@ class Environment {
     await dotenv.load(fileName: '.env');
 
     _apiUrl = dotenv.env['API_URL'] ?? 'https://api.dev.fuelpay.app/v1';
-    _razorpayKeyId =
-        dotenv.env['RAZORPAY_KEY_ID'] ?? 'rzp_test_xxxxx';
+    _razorpayKeyId = dotenv.env['RAZORPAY_KEY_ID'] ?? 'rzp_test_xxxxx';
     _mapsApiKey = dotenv.env['MAPS_API_KEY'] ?? '';
     _firebaseProjectId = dotenv.env['FIREBASE_PROJECT_ID'] ?? '';
     _isProduction = dotenv.env['ENV'] == 'production';
