@@ -301,12 +301,10 @@ class FuelPayTheme {
         secondary: electricBlue,
         tertiary: accentPurple,
         surface: charcoalCard,
-        background: blackBackground,
         error: errorRed,
         onPrimary: blackBackground,
         onSecondary: blackBackground,
         onSurface: textPrimary,
-        onBackground: textPrimary,
         onError: Colors.white,
       ),
 
@@ -354,20 +352,20 @@ class FuelPayTheme {
 
       // Checkbox Theme
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return neonGreen;
           }
           return charcoalCard;
         }),
-        checkColor: MaterialStateProperty.all(blackBackground),
+        checkColor: WidgetStateProperty.all(blackBackground),
         side: const BorderSide(color: neonGreen, width: 2),
       ),
 
       // Radio Theme
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return neonGreen;
           }
           return textTertiary;
