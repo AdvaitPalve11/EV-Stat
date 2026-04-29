@@ -43,3 +43,29 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter generated files
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Environment and local machine config
+.env
+.env.*
+!.env.example
+
+# Android local configuration
+/android/local.properties
+/android/.gradle/
+/android/captures/
+
+# iOS generated/local files
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/flutter_export_environment.sh
+/ios/Flutter/ephemeral/
+/ios/Pods/
+/ios/.symlinks/
+/ios/Runner.xcworkspace/xcuserdata/
+/ios/Runner.xcodeproj/xcuserdata/
+
+# macOS/iOS user files
+*.xcuserstate
