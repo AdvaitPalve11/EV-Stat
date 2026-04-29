@@ -94,8 +94,8 @@ extension NumExtensions on num {
 extension StringExtensions on String {
   /// Check if email is valid
   bool get isValidEmail => RegExp(
-    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-  ).hasMatch(this);
+        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+      ).hasMatch(this);
 
   /// Check if phone number is valid (Indian format)
   bool get isValidPhone => RegExp(r'^[6-9]\d{9}$').hasMatch(this);

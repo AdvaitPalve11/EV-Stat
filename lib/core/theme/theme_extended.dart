@@ -16,7 +16,7 @@ extension FuelPayThemeExtension on ThemeData {
     return LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [startColor.withOpacity(0.1), endColor.withOpacity(0.1)],
+      colors: [startColor.withValues(alpha: 0.1), endColor.withValues(alpha: 0.1)],
     );
   }
 }
@@ -74,7 +74,7 @@ class FuelPayTheme {
   // ============ SHADOW ============
   static final List<BoxShadow> glassmorphicShadow = [
     BoxShadow(
-      color: Colors.black.withOpacity(0.3),
+      color: Colors.black.withValues(alpha: 0.3),
       blurRadius: 16,
       spreadRadius: 0,
       offset: const Offset(0, 8),
@@ -83,7 +83,7 @@ class FuelPayTheme {
 
   static final List<BoxShadow> elevatedShadow = [
     BoxShadow(
-      color: electricBlue.withOpacity(0.2),
+      color: electricBlue.withValues(alpha: 0.2),
       blurRadius: 24,
       spreadRadius: 0,
       offset: const Offset(0, 12),
@@ -92,7 +92,7 @@ class FuelPayTheme {
 
   static final List<BoxShadow> neonShadow = [
     BoxShadow(
-      color: neonGreen.withOpacity(0.3),
+      color: neonGreen.withValues(alpha: 0.3),
       blurRadius: 20,
       spreadRadius: 0,
       offset: const Offset(0, 0),
@@ -301,12 +301,10 @@ class FuelPayTheme {
         secondary: electricBlue,
         tertiary: accentPurple,
         surface: charcoalCard,
-        background: blackBackground,
         error: errorRed,
         onPrimary: blackBackground,
         onSecondary: blackBackground,
         onSurface: textPrimary,
-        onBackground: textPrimary,
         onError: Colors.white,
       ),
 
@@ -354,20 +352,20 @@ class FuelPayTheme {
 
       // Checkbox Theme
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return neonGreen;
           }
           return charcoalCard;
         }),
-        checkColor: MaterialStateProperty.all(blackBackground),
+        checkColor: WidgetStateProperty.all(blackBackground),
         side: const BorderSide(color: neonGreen, width: 2),
       ),
 
       // Radio Theme
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return neonGreen;
           }
           return textTertiary;

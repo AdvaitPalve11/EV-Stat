@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fuel_cred/main.dart';
+import 'package:ev_stat/main.dart';
 
 void main() {
   testWidgets('FuelPay app builds', (WidgetTester tester) async {

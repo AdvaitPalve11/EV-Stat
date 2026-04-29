@@ -63,7 +63,7 @@ class _LoadingPainter extends CustomPainter {
       center,
       radius,
       Paint()
-        ..color = color.withOpacity(0.1)
+        ..color = color.withValues(alpha: 0.1)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2,
     );
@@ -181,7 +181,7 @@ class EmptyState extends StatelessWidget {
               child: Icon(
                 icon,
                 size: iconSize * 0.5,
-                color: FuelPayTheme.neonGreen.withOpacity(0.5),
+                color: FuelPayTheme.neonGreen.withValues(alpha: 0.5),
               ),
             ),
             const SizedBox(height: 24),
@@ -197,8 +197,8 @@ class EmptyState extends StatelessWidget {
               description,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: FuelPayTheme.textSecondary,
-              ),
+                    color: FuelPayTheme.textSecondary,
+                  ),
             ),
             if (actionButton != null) ...[
               const SizedBox(height: 24),
@@ -239,7 +239,7 @@ class ErrorState extends StatelessWidget {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: FuelPayTheme.errorRed.withOpacity(0.1),
+                color: FuelPayTheme.errorRed.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(40),
               ),
               child: Icon(icon, size: 40, color: FuelPayTheme.errorRed),
@@ -259,8 +259,8 @@ class ErrorState extends StatelessWidget {
               message,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: FuelPayTheme.textSecondary,
-              ),
+                    color: FuelPayTheme.textSecondary,
+                  ),
             ),
             const SizedBox(height: 24),
             // Retry Button
@@ -398,7 +398,7 @@ class _ShimmerEffectState extends State<ShimmerEffect>
               end: Alignment.bottomRight,
               colors: [
                 FuelPayTheme.charcoalCard,
-                FuelPayTheme.charcoalCard.withOpacity(0.5),
+                FuelPayTheme.charcoalCard.withValues(alpha: 0.5),
                 FuelPayTheme.charcoalCard,
               ],
               stops: [
