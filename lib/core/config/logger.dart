@@ -31,12 +31,12 @@ class AppLogger {
     logger.e(message, error: error, stackTrace: stackTrace);
   }
 
-  static void verbose(String message, [dynamic error, StackTrace? stackTrace]) {
-    logger.v(message, error: error, stackTrace: stackTrace);
+  static void trace(String message, [dynamic error, StackTrace? stackTrace]) {
+    logger.t(message, error: error, stackTrace: stackTrace);
   }
 
-  static void wtf(String message, [dynamic error, StackTrace? stackTrace]) {
-    logger.wtf(message, error: error, stackTrace: stackTrace);
+  static void fatal(String message, [dynamic error, StackTrace? stackTrace]) {
+    logger.f(message, error: error, stackTrace: stackTrace);
   }
 
   static void network(
