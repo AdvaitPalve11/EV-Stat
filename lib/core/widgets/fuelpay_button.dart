@@ -253,7 +253,7 @@ class _FuelPayButtonState extends State<FuelPayButton>
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: FuelPayTheme.errorRed.withOpacity(0.3),
+            color: FuelPayTheme.errorRed.withValues(alpha: 0.3),
             blurRadius: 20,
             spreadRadius: 0,
             offset: const Offset(0, 0),
@@ -292,17 +292,17 @@ class _FuelPayButtonState extends State<FuelPayButton>
   EdgeInsets _getPadding(Size size) {
     return switch (size) {
       FuelPayButtonSize.small => const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+          horizontal: 16,
+          vertical: 8,
+        ),
       FuelPayButtonSize.medium => const EdgeInsets.symmetric(
-        horizontal: 28,
-        vertical: 14,
-      ),
+          horizontal: 28,
+          vertical: 14,
+        ),
       FuelPayButtonSize.large => const EdgeInsets.symmetric(
-        horizontal: 32,
-        vertical: 18,
-      ),
+          horizontal: 32,
+          vertical: 18,
+        ),
       _ => const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
     };
   }

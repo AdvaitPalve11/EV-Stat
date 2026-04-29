@@ -75,8 +75,8 @@ class _FuelPayTextFieldState extends State<FuelPayTextField> {
             Text(
               widget.label,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: FuelPayTheme.textPrimary,
-              ),
+                    color: FuelPayTheme.textPrimary,
+                  ),
             ),
             if (widget.isRequired)
               const Text(' *', style: TextStyle(color: FuelPayTheme.errorRed)),
@@ -129,11 +129,11 @@ class _FuelPayTextFieldState extends State<FuelPayTextField> {
                       ),
                     )
                   : widget.suffixIcon != null
-                  ? Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: widget.suffixIcon,
-                    )
-                  : null,
+                      ? Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: widget.suffixIcon,
+                        )
+                      : null,
               filled: true,
               fillColor: FuelPayTheme.charcoalCard,
               border: OutlineInputBorder(
@@ -279,9 +279,9 @@ class _OTPInputFieldState extends State<OTPInputField> {
             maxLength: 1,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              color: FuelPayTheme.neonGreen,
-              fontWeight: FontWeight.w700,
-            ),
+                  color: FuelPayTheme.neonGreen,
+                  fontWeight: FontWeight.w700,
+                ),
             decoration: InputDecoration(
               filled: true,
               fillColor: FuelPayTheme.charcoalCard,
