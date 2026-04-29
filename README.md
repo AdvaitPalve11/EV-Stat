@@ -91,6 +91,33 @@ flutter run
 flutter test
 ```
 
+## GitHub Releases
+
+This repository includes a GitHub Actions workflow that builds Android release binaries and uploads them to GitHub Releases.
+
+Release assets generated:
+
+- `app-release.apk`
+- `app-release.aab`
+- `checksums.txt` (SHA-256 checksums)
+
+### Publish via Tag (recommended)
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+### Publish Manually
+
+Go to Actions → **Flutter Release** → **Run workflow** and provide:
+
+- `tag` (example: `v1.0.1`)
+- `prerelease` true/false
+- `draft` true/false
+
+Users can download binaries from the Releases page after the workflow completes.
+
 ## Documentation
 
 - [Project Status](PROJECT_STATUS.md)
