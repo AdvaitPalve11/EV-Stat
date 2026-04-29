@@ -38,18 +38,17 @@ class GlassmorphicCard extends StatelessWidget {
           child: Container(
             padding: padding ?? const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              gradient:
-                  gradient ??
+              gradient: gradient ??
                   LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      FuelPayTheme.charcoalCard.withOpacity(opacity + 0.05),
-                      FuelPayTheme.darkSurface.withOpacity(opacity),
+                      FuelPayTheme.charcoalCard.withValues(alpha: opacity + 0.05),
+                      FuelPayTheme.darkSurface.withValues(alpha: opacity),
                     ],
                   ),
               border: Border.all(
-                color: borderColor.withOpacity(0.5),
+                color: borderColor.withValues(alpha: 0.5),
                 width: 0.5,
               ),
               borderRadius: BorderRadius.circular(borderRadius),

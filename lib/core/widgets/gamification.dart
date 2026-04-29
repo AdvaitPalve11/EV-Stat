@@ -38,9 +38,9 @@ class RewardTierBadge extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [tierColor.withOpacity(0.2), tierColor.withOpacity(0.05)],
+          colors: [tierColor.withValues(alpha: 0.2), tierColor.withValues(alpha: 0.05)],
         ),
-        border: Border.all(color: tierColor.withOpacity(0.5), width: 1.5),
+        border: Border.all(color: tierColor.withValues(alpha: 0.5), width: 1.5),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -52,15 +52,15 @@ class RewardTierBadge extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: tierColor.withOpacity(0.2),
+                  color: tierColor.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   tierName,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: tierColor,
-                    fontWeight: FontWeight.w700,
-                  ),
+                        color: tierColor,
+                        fontWeight: FontWeight.w700,
+                      ),
                 ),
               ),
               const SizedBox(width: 12),
@@ -68,8 +68,8 @@ class RewardTierBadge extends StatelessWidget {
                 child: Text(
                   '${multiplier}x Multiplier',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: FuelPayTheme.textSecondary,
-                  ),
+                        color: FuelPayTheme.textSecondary,
+                      ),
                 ),
               ),
             ],
@@ -119,12 +119,12 @@ class StreakMeter extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            FuelPayTheme.neonGreen.withOpacity(0.15),
-            FuelPayTheme.neonGreen.withOpacity(0.05),
+            FuelPayTheme.neonGreen.withValues(alpha: 0.15),
+            FuelPayTheme.neonGreen.withValues(alpha: 0.05),
           ],
         ),
         border: Border.all(
-          color: FuelPayTheme.neonGreen.withOpacity(0.5),
+          color: FuelPayTheme.neonGreen.withValues(alpha: 0.5),
           width: 1.5,
         ),
         borderRadius: BorderRadius.circular(16),
@@ -139,16 +139,16 @@ class StreakMeter extends StatelessWidget {
               Text(
                 '🔥 Streak',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: FuelPayTheme.neonGreen,
-                ),
+                      color: FuelPayTheme.neonGreen,
+                    ),
               ),
               const SizedBox(height: 4),
               Text(
                 '$currentStreak Days',
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  color: FuelPayTheme.neonGreen,
-                  fontWeight: FontWeight.w900,
-                ),
+                      color: FuelPayTheme.neonGreen,
+                      fontWeight: FontWeight.w900,
+                    ),
               ),
             ],
           ),
@@ -164,15 +164,15 @@ class StreakMeter extends StatelessWidget {
                 Text(
                   'Bonus',
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: FuelPayTheme.blackBackground,
-                  ),
+                        color: FuelPayTheme.blackBackground,
+                      ),
                 ),
                 Text(
                   '+$streakBonus%',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: FuelPayTheme.blackBackground,
-                    fontWeight: FontWeight.w700,
-                  ),
+                        color: FuelPayTheme.blackBackground,
+                        fontWeight: FontWeight.w700,
+                      ),
                 ),
               ],
             ),
@@ -232,7 +232,7 @@ class TierLadder extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(12),
                 color: isCurrentTier
-                    ? tierColor.withOpacity(0.1)
+                    ? tierColor.withValues(alpha: 0.1)
                     : Colors.transparent,
               ),
               child: Row(
@@ -242,7 +242,7 @@ class TierLadder extends StatelessWidget {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: tierColor.withOpacity(0.2),
+                      color: tierColor.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
@@ -266,7 +266,9 @@ class TierLadder extends StatelessWidget {
                           children: [
                             Text(
                               tiers[index],
-                              style: Theme.of(context).textTheme.titleMedium
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
                                   ?.copyWith(
                                     color: tierColor,
                                     fontWeight: FontWeight.w700,
@@ -280,12 +282,14 @@ class TierLadder extends StatelessWidget {
                                   vertical: 2,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: tierColor.withOpacity(0.3),
+                                  color: tierColor.withValues(alpha: 0.3),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Text(
                                   'Current',
-                                  style: Theme.of(context).textTheme.labelSmall
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelSmall
                                       ?.copyWith(color: tierColor),
                                 ),
                               ),
@@ -294,7 +298,9 @@ class TierLadder extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           '${tierCreditsRequired[index]} credits required',
-                          style: Theme.of(context).textTheme.bodySmall
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
                               ?.copyWith(color: FuelPayTheme.textTertiary),
                         ),
                       ],
@@ -307,15 +313,15 @@ class TierLadder extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: tierColor.withOpacity(0.2),
+                      color: tierColor.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
                       '${1 + (index * 0.25)}x',
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: tierColor,
-                        fontWeight: FontWeight.w700,
-                      ),
+                            color: tierColor,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                   ),
                 ],
@@ -353,13 +359,13 @@ class AchievementBadge extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(
-          color: isUnlocked ? color.withOpacity(0.5) : FuelPayTheme.borderLight,
+          color: isUnlocked ? color.withValues(alpha: 0.5) : FuelPayTheme.borderLight,
           width: 1.5,
         ),
         borderRadius: BorderRadius.circular(16),
         color: isUnlocked
-            ? color.withOpacity(0.1)
-            : FuelPayTheme.charcoalCard.withOpacity(0.5),
+            ? color.withValues(alpha: 0.1)
+            : FuelPayTheme.charcoalCard.withValues(alpha: 0.5),
       ),
       child: Column(
         children: [
@@ -370,8 +376,8 @@ class AchievementBadge extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: isUnlocked
-                  ? color.withOpacity(0.2)
-                  : FuelPayTheme.textTertiary.withOpacity(0.1),
+                  ? color.withValues(alpha: 0.2)
+                  : FuelPayTheme.textTertiary.withValues(alpha: 0.1),
             ),
             child: Icon(
               icon,
@@ -385,8 +391,8 @@ class AchievementBadge extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: isUnlocked ? color : FuelPayTheme.textTertiary,
-            ),
+                  color: isUnlocked ? color : FuelPayTheme.textTertiary,
+                ),
           ),
           const SizedBox(height: 4),
           // Description
@@ -402,8 +408,8 @@ class AchievementBadge extends StatelessWidget {
             Text(
               'Unlocked: $unlockedDate',
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: FuelPayTheme.textTertiary,
-              ),
+                    color: FuelPayTheme.textTertiary,
+                  ),
             ),
           ],
         ],

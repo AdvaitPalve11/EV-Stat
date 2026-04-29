@@ -41,11 +41,11 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Container(
           decoration: BoxDecoration(
             color: isTransparent
-                ? backgroundColor.withOpacity(0.7)
+                ? backgroundColor.withValues(alpha: 0.7)
                 : backgroundColor,
             border: Border(
               bottom: BorderSide(
-                color: FuelPayTheme.borderLight.withOpacity(0.3),
+                color: FuelPayTheme.borderLight.withValues(alpha: 0.3),
                 width: 0.5,
               ),
             ),
@@ -60,14 +60,12 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
                     context,
                   ).textTheme.headlineSmall?.copyWith(color: textColor),
                 ),
-                leading:
-                    leading ??
+                leading: leading ??
                     (Navigator.of(context).canPop()
                         ? IconButton(
                             icon: const Icon(Icons.arrow_back_ios_new),
                             color: textColor,
-                            onPressed:
-                                onLeadingPressed ??
+                            onPressed: onLeadingPressed ??
                                 () => Navigator.pop(context),
                           )
                         : null),
@@ -110,10 +108,10 @@ class MinimalGlassAppBar extends StatelessWidget
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
           decoration: BoxDecoration(
-            color: FuelPayTheme.charcoalCard.withOpacity(0.7),
+            color: FuelPayTheme.charcoalCard.withValues(alpha: 0.7),
             border: Border(
               bottom: BorderSide(
-                color: FuelPayTheme.borderLight.withOpacity(0.3),
+                color: FuelPayTheme.borderLight.withValues(alpha: 0.3),
                 width: 0.5,
               ),
             ),
@@ -197,10 +195,10 @@ class _SearchAppBarState extends State<SearchAppBar> {
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
           decoration: BoxDecoration(
-            color: FuelPayTheme.charcoalCard.withOpacity(0.8),
+            color: FuelPayTheme.charcoalCard.withValues(alpha: 0.8),
             border: Border(
               bottom: BorderSide(
-                color: FuelPayTheme.borderLight.withOpacity(0.3),
+                color: FuelPayTheme.borderLight.withValues(alpha: 0.3),
                 width: 0.5,
               ),
             ),
