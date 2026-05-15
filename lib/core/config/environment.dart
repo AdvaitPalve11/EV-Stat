@@ -1,4 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:ev_stat/core/config/logger.dart';
 
 /// Environment configuration management
 class Environment {
@@ -9,13 +10,23 @@ class Environment {
   static late bool _isProduction;
 
   static Future<void> init() async {
-    await dotenv.load(fileName: '.env');
+    var loaded = false;
+    try {
+      await dotenv.load(fileName: '.env');
+      loaded = true;
+      AppLogger.info('Loaded .env file');
+    } catch (e, st) {
+      AppLogger.warning(
+          'Environment file ".env" not found; continuing with defaults', e, st);
+    }
 
-    _apiUrl = dotenv.env['API_URL'] ?? 'https://api.dev.fuelpay.app/v1';
-    _razorpayKeyId = dotenv.env['RAZORPAY_KEY_ID'] ?? 'rzp_test_xxxxx';
-    _mapsApiKey = dotenv.env['MAPS_API_KEY'] ?? '';
-    _firebaseProjectId = dotenv.env['FIREBASE_PROJECT_ID'] ?? '';
-    _isProduction = dotenv.env['ENV'] == 'production';
+    final env = loaded ? dotenv.env : <String, String>{};
+
+    _apiUrl = env['API_URL'] ?? 'https://api.dev.fuelpay.app/v1';
+    _razorpayKeyId = env['RAZORPAY_KEY_ID'] ?? 'rzp_test_xxxxx';
+    _mapsApiKey = env['MAPS_API_KEY'] ?? '';
+    _firebaseProjectId = env['FIREBASE_PROJECT_ID'] ?? '';
+    _isProduction = (env['ENV'] ?? '') == 'production';
   }
 
   static String get apiUrl => _apiUrl;

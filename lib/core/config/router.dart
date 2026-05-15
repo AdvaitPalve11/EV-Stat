@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/navigation/app_shell.dart';
+import '../../features/stations/station_detail_page.dart';
+
 /// Application-wide router configuration
 /// Routes will be added as we build each feature
 class AppRouter {
@@ -10,16 +13,38 @@ class AppRouter {
       return Scaffold(body: Center(child: Text('Route error: ${state.error}')));
     },
     routes: [
-      // Splash route
       GoRoute(
         path: '/',
         name: 'splash',
         builder: (context, state) {
-          // TODO: Implement splash screen in Phase 1
-          return const Scaffold(body: Center(child: Text('Splash Screen')));
+          return const AppShellPage();
         },
       ),
-      // More routes will be added in subsequent phases
+      GoRoute(
+        path: '/station/:stationId',
+        name: RouteNames.stationDetails,
+        pageBuilder: (context, state) {
+          final stationId = state.pathParameters['stationId'] ?? '';
+
+          return CustomTransitionPage<void>(
+            key: state.pageKey,
+            child: StationDetailPage(stationId: stationId),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              final fade =
+                  CurvedAnimation(parent: animation, curve: Curves.easeOut);
+              final slide =
+                  Tween<Offset>(begin: const Offset(0.08, 0), end: Offset.zero)
+                      .animate(fade);
+
+              return FadeTransition(
+                opacity: fade,
+                child: SlideTransition(position: slide, child: child),
+              );
+            },
+          );
+        },
+      ),
     ],
   );
 }

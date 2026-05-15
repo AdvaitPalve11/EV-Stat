@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/config/environment.dart';
 import 'core/config/logger.dart';
 import 'core/config/router.dart';
-import 'core/theme/theme.dart';
+import 'core/theme/theme_extended.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +37,8 @@ class FuelPayApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'FuelPay',
       debugShowCheckedModeBanner: false,
-      theme: FuelPayTheme.lightTheme(),
-      darkTheme: FuelPayTheme.darkTheme(),
+      theme: FuelPayTheme.darkTheme,
+      darkTheme: FuelPayTheme.darkTheme,
       themeMode: ThemeMode.dark, // Default to dark theme
       routerConfig: AppRouter.router,
     );
