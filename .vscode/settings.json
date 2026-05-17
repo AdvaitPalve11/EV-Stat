@@ -1,4 +1,14 @@
 {
+  "java.home": "C:/Users/Advait/.jdk/jdk-17.0.18",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "C:/Users/Advait/.jdk/jdk-17.0.18",
+      "default": true
+    }
+  ]
+}
+{
     "chat.tools.terminal.autoApprove": {
         "flutter": true
     },

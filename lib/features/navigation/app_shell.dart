@@ -15,7 +15,6 @@ class AppShellPage extends StatefulWidget {
 }
 
 class _AppShellPageState extends State<AppShellPage> {
-  final PageController _pageController = PageController();
   int _selectedIndex = 0;
 
   final List<Widget> _pages = const [
@@ -37,12 +36,6 @@ class _AppShellPageState extends State<AppShellPage> {
     NavigationDestination(icon: Icon(Icons.person_rounded), label: 'Profile'),
   ];
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   void _selectTab(int index) {
     if (index == _selectedIndex) {
       return;
@@ -51,12 +44,6 @@ class _AppShellPageState extends State<AppShellPage> {
     setState(() {
       _selectedIndex = index;
     });
-
-    _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 420),
-      curve: Curves.easeOutCubic,
-    );
   }
 
   @override
@@ -94,9 +81,8 @@ class _AppShellPageState extends State<AppShellPage> {
                 size: 180),
           ),
           SafeArea(
-            child: PageView(
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
+            child: IndexedStack(
+              index: _selectedIndex,
               children: _pages,
             ),
           ),
@@ -115,6 +101,15 @@ class _AppShellPageState extends State<AppShellPage> {
           data: NavigationBarThemeData(
             backgroundColor: Colors.transparent,
             indicatorColor: FuelPayTheme.neonGreen.withValues(alpha: 0.16),
+            // Ensure icons are visible on the dark background
+            iconTheme: WidgetStateProperty.resolveWith((states) {
+              return IconThemeData(
+                color: states.contains(WidgetState.selected)
+                    ? FuelPayTheme.neonGreen
+                    : FuelPayTheme.textSecondary,
+                size: 22,
+              );
+            }),
             labelTextStyle: WidgetStateProperty.resolveWith((states) {
               return TextStyle(
                 color: states.contains(WidgetState.selected)

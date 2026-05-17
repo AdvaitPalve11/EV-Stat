@@ -18,6 +18,7 @@ class StationsPage extends ConsumerStatefulWidget {
 class _StationsPageState extends ConsumerState<StationsPage> {
   final TextEditingController _searchController = TextEditingController();
   int _selectedFilter = 0;
+  int _selectedFuel = 0; // 0 = Petrol, 1 = Diesel, 2 = EV (future)
 
   @override
   void dispose() {
@@ -53,6 +54,47 @@ class _StationsPageState extends ConsumerState<StationsPage> {
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 100),
               children: [
                 _StationsHeroCard(data: data),
+                const SizedBox(height: 12),
+                // Fuel type selector (Petrol / Diesel)
+                Row(
+                  children: [
+                    Expanded(
+                      child: ChoiceChip(
+                        label: const Text('Petrol'),
+                        selected: _selectedFuel == 0,
+                        onSelected: (_) => setState(() => _selectedFuel = 0),
+                        selectedColor:
+                            FuelPayTheme.neonGreen.withValues(alpha: 0.15),
+                        backgroundColor: FuelPayTheme.charcoalCard,
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(
+                                color: _selectedFuel == 0
+                                    ? FuelPayTheme.neonGreen
+                                    : FuelPayTheme.textSecondary),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: ChoiceChip(
+                        label: const Text('Diesel'),
+                        selected: _selectedFuel == 1,
+                        onSelected: (_) => setState(() => _selectedFuel = 1),
+                        selectedColor:
+                            FuelPayTheme.neonGreen.withValues(alpha: 0.15),
+                        backgroundColor: FuelPayTheme.charcoalCard,
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(
+                                color: _selectedFuel == 1
+                                    ? FuelPayTheme.neonGreen
+                                    : FuelPayTheme.textSecondary),
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: _searchController,
@@ -97,6 +139,7 @@ class _StationsPageState extends ConsumerState<StationsPage> {
                     child: AnimatedFuelPayCard(
                       child: _StationCard(
                         station: station,
+                        selectedFuel: _selectedFuel,
                         onTap: () => context.pushNamed(
                           RouteNames.stationDetails,
                           pathParameters: {'stationId': station.id},
@@ -272,9 +315,11 @@ class _FilterChip extends StatelessWidget {
 
 class _StationCard extends StatelessWidget {
   final StationSnapshot station;
+  final int selectedFuel;
   final VoidCallback onTap;
 
-  const _StationCard({required this.station, required this.onTap});
+  const _StationCard(
+      {required this.station, required this.selectedFuel, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -305,7 +350,13 @@ class _StationCard extends StatelessWidget {
                   color: statusColor.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(18),
                 ),
-                child: Icon(Icons.ev_station_rounded, color: statusColor),
+                child: Icon(
+                  // Show pump icon for petrol/diesel; keep EV icon for future
+                  selectedFuel == 2
+                      ? Icons.ev_station_rounded
+                      : Icons.local_gas_station_rounded,
+                  color: statusColor,
+                ),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -344,7 +395,9 @@ class _StationCard extends StatelessWidget {
               Expanded(
                   child: _ValueTile(
                       label: 'Price',
-                      value: '₹${station.pricePerKwh.toStringAsFixed(1)}/kWh')),
+                      value: selectedFuel == 2
+                          ? '₹${station.pricePerKwh.toStringAsFixed(1)}/kWh'
+                          : '₹${station.pricePerKwh.toStringAsFixed(1)}/L')),
               const SizedBox(width: 10),
               Expanded(
                   child: _ValueTile(

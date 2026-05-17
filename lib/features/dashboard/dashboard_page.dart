@@ -43,6 +43,8 @@ class DashboardPage extends ConsumerWidget {
                     [
                       _HeroSummaryCard(data: data),
                       const SizedBox(height: 16),
+                      _GamificationBanner(data: data),
+                      const SizedBox(height: 16),
                       _SectionTitle(
                         title: 'Live metrics',
                         subtitle:
@@ -142,11 +144,12 @@ class _DashboardLoadingState extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16),
+      physics: const AlwaysScrollableScrollPhysics(),
       children: const [
         SkeletonHeroCard(),
         SizedBox(height: 16),
-        SkeletalLoader(height: 18, width: 140),
-        SizedBox(height: 12),
+        SkeletalLoader(height: 180),
+        SizedBox(height: 16),
         SkeletalLoader(height: 120),
         SizedBox(height: 16),
         SkeletalLoader(height: 260),
@@ -155,6 +158,145 @@ class _DashboardLoadingState extends StatelessWidget {
         SizedBox(height: 12),
         SkeletalLoader(height: 84),
       ],
+    );
+  }
+}
+
+class _GamificationBanner extends StatelessWidget {
+  final AppBackendSnapshot data;
+
+  const _GamificationBanner({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    final missionProgress = data.tierProgress.clamp(0.0, 1.0);
+
+    return AnimatedFuelPayCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  gradient: FuelPayTheme.neonGradient,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: const Icon(
+                  Icons.rocket_launch_rounded,
+                  color: FuelPayTheme.blackBackground,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Daily mission',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'Stay active to unlock more rewards and station perks.',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: FuelPayTheme.neonGreen.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Text(
+                  '${(missionProgress * 100).toStringAsFixed(0)}% XP',
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: FuelPayTheme.neonGreen,
+                        fontWeight: FontWeight.w800,
+                      ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: missionProgress,
+              minHeight: 10,
+              backgroundColor: FuelPayTheme.darkSurface2,
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                FuelPayTheme.electricBlue,
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: _MiniMetric(
+                  label: 'Tier',
+                  value: data.tierName,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _MiniMetric(
+                  label: 'Streak',
+                  value: '${data.streakDays} days',
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _MiniMetric(
+                  label: 'Credits',
+                  value: data.credits.toString(),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MiniMetric extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _MiniMetric({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.03),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.04)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
+          ),
+          const SizedBox(height: 4),
+          Text(label, style: Theme.of(context).textTheme.bodySmall),
+        ],
+      ),
     );
   }
 }

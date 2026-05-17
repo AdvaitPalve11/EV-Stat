@@ -31,7 +31,7 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0));
+      Size.fromHeight(55.5 + (bottom?.preferredSize.height ?? 0));
 
   @override
   Widget build(BuildContext context) {
@@ -52,28 +52,51 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
             boxShadow: isTransparent ? FuelPayTheme.glassmorphicShadow : [],
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              AppBar(
-                title: Text(
-                  title,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.headlineSmall?.copyWith(color: textColor),
+              SafeArea(
+                bottom: false,
+                child: SizedBox(
+                  height: 55,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: [
+                        leading ??
+                            (Navigator.of(context).canPop()
+                                ? IconButton(
+                                    icon: const Icon(
+                                      Icons.arrow_back_ios_new,
+                                    ),
+                                    color: textColor,
+                                    onPressed: onLeadingPressed ??
+                                        () => Navigator.pop(context),
+                                  )
+                                : const SizedBox(width: 48)),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(color: textColor),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        if (actions != null && actions!.isNotEmpty)
+                          Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: actions!)
+                        else
+                          const SizedBox(width: 48),
+                      ],
+                    ),
+                  ),
                 ),
-                leading: leading ??
-                    (Navigator.of(context).canPop()
-                        ? IconButton(
-                            icon: const Icon(Icons.arrow_back_ios_new),
-                            color: textColor,
-                            onPressed: onLeadingPressed ??
-                                () => Navigator.pop(context),
-                          )
-                        : null),
-                actions: actions,
-                elevation: elevation,
-                backgroundColor: Colors.transparent,
-                centerTitle: true,
-                surfaceTintColor: Colors.transparent,
               ),
               if (bottom != null) bottom!,
             ],

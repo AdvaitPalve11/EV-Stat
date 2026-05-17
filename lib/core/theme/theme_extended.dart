@@ -16,7 +16,10 @@ extension FuelPayThemeExtension on ThemeData {
     return LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: [startColor.withValues(alpha: 0.1), endColor.withValues(alpha: 0.1)],
+      colors: [
+        startColor.withValues(alpha: 0.1),
+        endColor.withValues(alpha: 0.1)
+      ],
     );
   }
 }
@@ -106,6 +109,13 @@ class FuelPayTheme {
       brightness: Brightness.dark,
       primaryColor: neonGreen,
       scaffoldBackgroundColor: blackBackground,
+      canvasColor: blackBackground,
+      splashColor: neonGreen.withValues(alpha: 0.12),
+      highlightColor: electricBlue.withValues(alpha: 0.08),
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+
+      iconTheme: const IconThemeData(color: textPrimary, size: 22),
+      primaryIconTheme: const IconThemeData(color: neonGreen, size: 22),
 
       // AppBar Theme
       appBarTheme: AppBarTheme(
@@ -127,7 +137,7 @@ class FuelPayTheme {
         color: charcoalCard,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(24),
           side: const BorderSide(color: borderLight, width: 0.5),
         ),
         clipBehavior: Clip.antiAlias,
@@ -308,6 +318,73 @@ class FuelPayTheme {
         onError: Colors.white,
       ),
 
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: charcoalCard.withValues(alpha: 0.92),
+        indicatorColor: neonGreen.withValues(alpha: 0.16),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          return TextStyle(
+            color: states.contains(WidgetState.selected)
+                ? neonGreen
+                : textSecondary,
+            fontSize: 11,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.3,
+          );
+        }),
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          return IconThemeData(
+            color: states.contains(WidgetState.selected)
+                ? neonGreen
+                : textSecondary,
+            size: 22,
+          );
+        }),
+      ),
+
+      chipTheme: ChipThemeData(
+        backgroundColor: charcoalCard,
+        disabledColor: darkSurface,
+        selectedColor: neonGreen.withValues(alpha: 0.16),
+        secondarySelectedColor: electricBlue.withValues(alpha: 0.16),
+        labelStyle: const TextStyle(color: textPrimary),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        side: const BorderSide(color: borderLight, width: 0.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+      ),
+
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: neonGreen,
+        linearTrackColor: darkSurface2,
+        circularTrackColor: darkSurface2,
+      ),
+
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          return states.contains(WidgetState.selected)
+              ? neonGreen
+              : textTertiary;
+        }),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          return states.contains(WidgetState.selected)
+              ? neonGreen.withValues(alpha: 0.25)
+              : borderLight;
+        }),
+      ),
+
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: charcoalCard,
+        contentTextStyle: const TextStyle(color: textPrimary),
+        actionTextColor: neonGreen,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      ),
+
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: neonGreen,
+        foregroundColor: blackBackground,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      ),
+
       // Divider Theme
       dividerColor: borderLight,
       dividerTheme: const DividerThemeData(
@@ -370,6 +447,16 @@ class FuelPayTheme {
           }
           return textTertiary;
         }),
+      ),
+
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.macOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+        },
       ),
     );
   }
