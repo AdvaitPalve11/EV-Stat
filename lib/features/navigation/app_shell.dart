@@ -56,29 +56,28 @@ class _AppShellPageState extends State<AppShellPage> {
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
                 colors: [
-                  Color(0xFF05070C),
-                  Color(0xFF090B13),
-                  Color(0xFF000000),
+                  Color(0xFF0B1220),
+                  Color(0xFF0F172A),
+                  Color(0xFF111827),
                 ],
-                stops: [0.0, 0.55, 1.0],
+                stops: [0.0, 0.62, 1.0],
               ),
             ),
           ),
           Positioned(
-            top: -120,
-            right: -80,
-            child: _GlowOrb(
-                color: FuelPayTheme.electricBlue.withValues(alpha: 0.22)),
+            top: -100,
+            right: -70,
+            child: _GlowOrb(color: FuelPayTheme.accent.withValues(alpha: 0.12)),
           ),
           Positioned(
-            bottom: 140,
-            left: -60,
+            bottom: 120,
+            left: -70,
             child: _GlowOrb(
-                color: FuelPayTheme.neonGreen.withValues(alpha: 0.12),
-                size: 180),
+                color: FuelPayTheme.accentSoft.withValues(alpha: 0.08),
+                size: 200),
           ),
           SafeArea(
             child: IndexedStack(
@@ -90,33 +89,38 @@ class _AppShellPageState extends State<AppShellPage> {
       ),
       bottomNavigationBar: Container(
         margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: FuelPayTheme.charcoalCard.withValues(alpha: 0.92),
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: FuelPayTheme.borderLight, width: 0.5),
-          boxShadow: FuelPayTheme.glassmorphicShadow,
+          color: FuelPayTheme.surface.withValues(alpha: 0.96),
+          borderRadius: BorderRadius.circular(28),
+          border: Border.all(color: FuelPayTheme.borderLight, width: 0.7),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.24),
+              blurRadius: 24,
+              offset: const Offset(0, 12),
+            ),
+          ],
         ),
         child: NavigationBarTheme(
           data: NavigationBarThemeData(
             backgroundColor: Colors.transparent,
-            indicatorColor: FuelPayTheme.neonGreen.withValues(alpha: 0.16),
-            // Ensure icons are visible on the dark background
+            indicatorColor: FuelPayTheme.accent.withValues(alpha: 0.12),
             iconTheme: WidgetStateProperty.resolveWith((states) {
               return IconThemeData(
                 color: states.contains(WidgetState.selected)
-                    ? FuelPayTheme.neonGreen
+                    ? FuelPayTheme.accent
                     : FuelPayTheme.textSecondary,
-                size: 22,
+                size: 21,
               );
             }),
             labelTextStyle: WidgetStateProperty.resolveWith((states) {
               return TextStyle(
                 color: states.contains(WidgetState.selected)
-                    ? FuelPayTheme.neonGreen
+                    ? FuelPayTheme.accent
                     : FuelPayTheme.textSecondary,
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
               );
             }),
           ),
@@ -124,7 +128,7 @@ class _AppShellPageState extends State<AppShellPage> {
             selectedIndex: _selectedIndex,
             onDestinationSelected: _selectTab,
             destinations: _destinations,
-            height: 72,
+            height: 74,
             elevation: 0,
             backgroundColor: Colors.transparent,
           ),

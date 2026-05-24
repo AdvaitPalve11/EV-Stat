@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// FuelPay Theme Extension - Advanced glassmorphism effects
 extension FuelPayThemeExtension on ThemeData {
@@ -30,46 +31,53 @@ class FuelPayTheme {
   FuelPayTheme._();
 
   // ============ COLOR PALETTE ============
-  static const Color blackBackground = Color(0xFF000000);
-  static const Color charcoalCard = Color(0xFF1A1A1A);
-  static const Color darkSurface = Color(0xFF0D0D0D);
-  static const Color darkSurface2 = Color(0xFF151515);
-  static const Color neonGreen = Color(0xFF00FF41);
-  static const Color neonGreenLight = Color(0xFF00FF66);
-  static const Color electricBlue = Color(0xFF0066FF);
-  static const Color electricBlueDark = Color(0xFF0052CC);
-  static const Color accentPurple = Color(0xFF9D00FF);
-  static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xFFB0B0B0);
-  static const Color textTertiary = Color(0xFF808080);
-  static const Color successGreen = Color(0xFF00D084);
-  static const Color errorRed = Color(0xFFFF4444);
-  static const Color warningOrange = Color(0xFFFFB84D);
-  static const Color transparentWhite = Color(0x1AFFFFFF);
-  static const Color borderLight = Color(0xFF2A2A2A);
-  static const Color borderDark = Color(0xFF0A0A0A);
+  static const Color pageBackground = Color(0xFF0B1220);
+  static const Color surface = Color(0xFF111A2C);
+  static const Color surfaceAlt = Color(0xFF162033);
+  static const Color elevatedSurface = Color(0xFF1A2740);
+  static const Color accent = Color(0xFF4DA3FF);
+  static const Color accentSoft = Color(0xFF7CC4FF);
+  static const Color accentWarm = Color(0xFFF2B36F);
+  static const Color textPrimary = Color(0xFFF7FAFC);
+  static const Color textSecondary = Color(0xFFB5C2D6);
+  static const Color textTertiary = Color(0xFF7E8CA4);
+  static const Color successGreen = Color(0xFF2FBF71);
+  static const Color errorRed = Color(0xFFE86A6A);
+  static const Color warningOrange = Color(0xFFF0B35A);
+  static const Color transparentWhite = Color(0x12FFFFFF);
+  static const Color borderLight = Color(0xFF26324A);
+  static const Color borderDark = Color(0xFF121A29);
+  static const Color blackBackground = pageBackground;
+  static const Color charcoalCard = surface;
+  static const Color darkSurface = surfaceAlt;
+  static const Color darkSurface2 = elevatedSurface;
+  static const Color neonGreen = accent;
+  static const Color neonGreenLight = accentSoft;
+  static const Color electricBlue = accent;
+  static const Color electricBlueDark = Color(0xFF2E79D4);
+  static const Color accentPurple = Color(0xFF7C8DB5);
 
   // ============ GRADIENTS ============
   static const LinearGradient neonGradient = LinearGradient(
-    colors: [neonGreen, electricBlue],
+    colors: [accent, accentSoft],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
   static const LinearGradient darkGradient = LinearGradient(
-    colors: [charcoalCard, darkSurface],
+    colors: [surface, surfaceAlt],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
   static const LinearGradient premiumGradient = LinearGradient(
-    colors: [charcoalCard, darkSurface2],
+    colors: [surface, elevatedSurface],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
 
   static const LinearGradient tierGradient = LinearGradient(
-    colors: [neonGreen, electricBlue, accentPurple],
+    colors: [accent, accentSoft, accentWarm],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
@@ -104,22 +112,37 @@ class FuelPayTheme {
 
   // ============ THEME DATA ============
   static ThemeData get darkTheme {
+    final colorScheme = const ColorScheme.dark(
+      primary: accent,
+      secondary: accentSoft,
+      tertiary: accentWarm,
+      surface: surface,
+      error: errorRed,
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: textPrimary,
+      onError: Colors.white,
+    );
+
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      primaryColor: neonGreen,
-      scaffoldBackgroundColor: blackBackground,
-      canvasColor: blackBackground,
-      splashColor: neonGreen.withValues(alpha: 0.12),
-      highlightColor: electricBlue.withValues(alpha: 0.08),
+      colorScheme: colorScheme,
+      primaryColor: accent,
+      scaffoldBackgroundColor: pageBackground,
+      canvasColor: pageBackground,
+      splashColor: accent.withValues(alpha: 0.12),
+      highlightColor: accentSoft.withValues(alpha: 0.08),
       visualDensity: VisualDensity.adaptivePlatformDensity,
 
+      fontFamily: GoogleFonts.inter().fontFamily,
+
       iconTheme: const IconThemeData(color: textPrimary, size: 22),
-      primaryIconTheme: const IconThemeData(color: neonGreen, size: 22),
+      primaryIconTheme: const IconThemeData(color: accent, size: 22),
 
       // AppBar Theme
       appBarTheme: AppBarTheme(
-        backgroundColor: charcoalCard,
+        backgroundColor: surface,
         elevation: 0,
         centerTitle: true,
         titleTextStyle: const TextStyle(
@@ -134,7 +157,7 @@ class FuelPayTheme {
 
       // Card Theme
       cardTheme: CardThemeData(
-        color: charcoalCard,
+        color: surface,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
@@ -238,8 +261,8 @@ class FuelPayTheme {
       // Button Themes
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: neonGreen,
-          foregroundColor: blackBackground,
+          backgroundColor: accent,
+          foregroundColor: Colors.white,
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
           shape: RoundedRectangleBorder(
@@ -254,8 +277,8 @@ class FuelPayTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: neonGreen,
-          side: const BorderSide(color: neonGreen, width: 2),
+          foregroundColor: accent,
+          side: const BorderSide(color: accent, width: 1.5),
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -265,7 +288,7 @@ class FuelPayTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: neonGreen,
+          foregroundColor: accent,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
@@ -274,7 +297,7 @@ class FuelPayTheme {
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: charcoalCard,
+        fillColor: surface,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 16,
@@ -289,7 +312,7 @@ class FuelPayTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: neonGreen, width: 2),
+          borderSide: const BorderSide(color: accent, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
@@ -300,32 +323,18 @@ class FuelPayTheme {
           borderSide: const BorderSide(color: errorRed, width: 2),
         ),
         hintStyle: const TextStyle(color: textTertiary, fontSize: 14),
-        labelStyle: const TextStyle(color: neonGreen),
+        labelStyle: const TextStyle(color: accent),
         prefixIconColor: textSecondary,
         suffixIconColor: textSecondary,
       ),
 
-      // Color Scheme
-      colorScheme: ColorScheme.dark(
-        primary: neonGreen,
-        secondary: electricBlue,
-        tertiary: accentPurple,
-        surface: charcoalCard,
-        error: errorRed,
-        onPrimary: blackBackground,
-        onSecondary: blackBackground,
-        onSurface: textPrimary,
-        onError: Colors.white,
-      ),
-
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: charcoalCard.withValues(alpha: 0.92),
-        indicatorColor: neonGreen.withValues(alpha: 0.16),
+        backgroundColor: surface.withValues(alpha: 0.96),
+        indicatorColor: accent.withValues(alpha: 0.14),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           return TextStyle(
-            color: states.contains(WidgetState.selected)
-                ? neonGreen
-                : textSecondary,
+            color:
+                states.contains(WidgetState.selected) ? accent : textSecondary,
             fontSize: 11,
             fontWeight: FontWeight.w700,
             letterSpacing: 0.3,
@@ -333,19 +342,18 @@ class FuelPayTheme {
         }),
         iconTheme: WidgetStateProperty.resolveWith((states) {
           return IconThemeData(
-            color: states.contains(WidgetState.selected)
-                ? neonGreen
-                : textSecondary,
+            color:
+                states.contains(WidgetState.selected) ? accent : textSecondary,
             size: 22,
           );
         }),
       ),
 
       chipTheme: ChipThemeData(
-        backgroundColor: charcoalCard,
+        backgroundColor: surface,
         disabledColor: darkSurface,
-        selectedColor: neonGreen.withValues(alpha: 0.16),
-        secondarySelectedColor: electricBlue.withValues(alpha: 0.16),
+        selectedColor: accent.withValues(alpha: 0.14),
+        secondarySelectedColor: accentSoft.withValues(alpha: 0.14),
         labelStyle: const TextStyle(color: textPrimary),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         side: const BorderSide(color: borderLight, width: 0.5),
@@ -353,35 +361,33 @@ class FuelPayTheme {
       ),
 
       progressIndicatorTheme: const ProgressIndicatorThemeData(
-        color: neonGreen,
+        color: accent,
         linearTrackColor: darkSurface2,
         circularTrackColor: darkSurface2,
       ),
 
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.resolveWith((states) {
-          return states.contains(WidgetState.selected)
-              ? neonGreen
-              : textTertiary;
+          return states.contains(WidgetState.selected) ? accent : textTertiary;
         }),
         trackColor: WidgetStateProperty.resolveWith((states) {
           return states.contains(WidgetState.selected)
-              ? neonGreen.withValues(alpha: 0.25)
+              ? accent.withValues(alpha: 0.25)
               : borderLight;
         }),
       ),
 
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: charcoalCard,
+        backgroundColor: surface,
         contentTextStyle: const TextStyle(color: textPrimary),
-        actionTextColor: neonGreen,
+        actionTextColor: accent,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
 
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: neonGreen,
-        foregroundColor: blackBackground,
+        backgroundColor: accent,
+        foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       ),
 
@@ -431,19 +437,19 @@ class FuelPayTheme {
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return neonGreen;
+            return accent;
           }
-          return charcoalCard;
+          return surface;
         }),
-        checkColor: WidgetStateProperty.all(blackBackground),
-        side: const BorderSide(color: neonGreen, width: 2),
+        checkColor: WidgetStateProperty.all(Colors.white),
+        side: const BorderSide(color: accent, width: 2),
       ),
 
       // Radio Theme
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return neonGreen;
+            return accent;
           }
           return textTertiary;
         }),

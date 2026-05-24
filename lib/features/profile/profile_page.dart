@@ -48,8 +48,9 @@ class ProfilePage extends ConsumerWidget {
                               style: Theme.of(context).textTheme.titleLarge),
                           const SizedBox(height: 4),
                           Text(
-                              'Tier ${data.tierName} · ${data.credits} credits',
-                              style: Theme.of(context).textTheme.bodyMedium),
+                            '${data.tierName} account · ${data.credits} credits',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                     ),
@@ -57,11 +58,24 @@ class ProfilePage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
+              RewardTierBadge(
+                tierName: data.tierName,
+                multiplier: data.tierName.toLowerCase() == 'diamond'
+                    ? 2.5
+                    : data.tierName.toLowerCase() == 'platinum'
+                        ? 2.0
+                        : 1.5,
+                currentCredits: data.credits,
+                maxCredits: 5000,
+              ),
+              const SizedBox(height: 16),
+              StreakMeter(currentStreak: data.streakDays, streakBonus: 12),
+              const SizedBox(height: 16),
               AnimatedFuelPayCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Session settings',
+                    Text('Operational settings',
                         style: Theme.of(context).textTheme.titleLarge),
                     const SizedBox(height: 12),
                     SwitchListTile(
@@ -70,13 +84,13 @@ class ProfilePage extends ConsumerWidget {
                       onChanged: (_) {},
                       title: const Text('Push notifications'),
                       subtitle: const Text(
-                          'Receive live alerts for payments and station changes'),
+                          'Receive live alerts for payments and station updates'),
                     ),
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
                       value: false,
                       onChanged: (_) {},
-                      title: const Text('Night charge mode'),
+                      title: const Text('Off-peak preference'),
                       subtitle: const Text(
                           'Prefer lower tariff windows when possible'),
                     ),
@@ -88,6 +102,68 @@ class ProfilePage extends ConsumerWidget {
                       subtitle: const Text(
                           'Reduce image and chart refresh frequency'),
                     ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              AnimatedFuelPayCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Account milestones',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: const [
+                        SizedBox(
+                          width: 150,
+                          child: AchievementBadge(
+                            title: 'First session',
+                            description:
+                                'Initial usage completed on the platform.',
+                            icon: Icons.flash_on_rounded,
+                            color: FuelPayTheme.electricBlue,
+                            isUnlocked: true,
+                            unlockedDate: 'Today',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: AchievementBadge(
+                            title: 'Consistency',
+                            description: 'Maintain steady usage over time.',
+                            icon: Icons.local_fire_department_rounded,
+                            color: FuelPayTheme.neonGreen,
+                            isUnlocked: true,
+                            unlockedDate: 'This week',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: AchievementBadge(
+                            title: 'Prepared wallet',
+                            description:
+                                'Keep your balance ready for future sessions.',
+                            icon: Icons.account_balance_wallet_rounded,
+                            color: FuelPayTheme.warningOrange,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              AnimatedFuelPayCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Membership ladder',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    const SizedBox(height: 12),
+                    TierLadder(currentTierIndex: _tierIndex(data.tierName)),
                   ],
                 ),
               ),
@@ -111,7 +187,6 @@ class ProfilePage extends ConsumerWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
               FuelPayButton(
                   label: 'Sign out',
                   onPressed: () {},
@@ -151,4 +226,21 @@ String _formatTime(DateTime time) {
   final minute = time.minute.toString().padLeft(2, '0');
   final suffix = time.hour >= 12 ? 'PM' : 'AM';
   return '$hour:$minute $suffix';
+}
+
+int _tierIndex(String tierName) {
+  switch (tierName.toLowerCase()) {
+    case 'bronze':
+      return 0;
+    case 'silver':
+      return 1;
+    case 'gold':
+      return 2;
+    case 'platinum':
+      return 3;
+    case 'diamond':
+      return 4;
+    default:
+      return 0;
+  }
 }

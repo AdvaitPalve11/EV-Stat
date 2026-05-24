@@ -43,12 +43,12 @@ class DashboardPage extends ConsumerWidget {
                     [
                       _HeroSummaryCard(data: data),
                       const SizedBox(height: 16),
-                      _GamificationBanner(data: data),
+                      _OperationalSummaryCard(data: data),
                       const SizedBox(height: 16),
                       _SectionTitle(
-                        title: 'Live metrics',
+                        title: 'Fleet metrics',
                         subtitle:
-                            'Key values refresh as the backend feed updates.',
+                            'Core operational values refreshed in real time.',
                       ),
                       const SizedBox(height: 12),
                       Wrap(
@@ -78,7 +78,8 @@ class DashboardPage extends ConsumerWidget {
                       const SizedBox(height: 16),
                       _SectionTitle(
                         title: 'Usage trend',
-                        subtitle: 'Seven-day energy pattern from the backend.',
+                        subtitle:
+                            'Seven-day energy trend from the backend feed.',
                       ),
                       const SizedBox(height: 12),
                       AnimatedFuelPayCard(
@@ -90,7 +91,7 @@ class DashboardPage extends ConsumerWidget {
                       const SizedBox(height: 16),
                       _SectionTitle(
                         title: 'Quick actions',
-                        subtitle: 'One tap into the most common journeys.',
+                        subtitle: 'Primary actions for daily fleet operations.',
                       ),
                       const SizedBox(height: 12),
                       Wrap(
@@ -113,7 +114,7 @@ class DashboardPage extends ConsumerWidget {
                       const SizedBox(height: 16),
                       _SectionTitle(
                         title: 'Recent activity',
-                        subtitle: 'Latest transactions, refreshed live.',
+                        subtitle: 'Latest activity and payment events.',
                       ),
                       const SizedBox(height: 12),
                       ...data.transactions.map(
@@ -162,10 +163,10 @@ class _DashboardLoadingState extends StatelessWidget {
   }
 }
 
-class _GamificationBanner extends StatelessWidget {
+class _OperationalSummaryCard extends StatelessWidget {
   final AppBackendSnapshot data;
 
-  const _GamificationBanner({required this.data});
+  const _OperationalSummaryCard({required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -181,12 +182,12 @@ class _GamificationBanner extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  gradient: FuelPayTheme.neonGradient,
+                  gradient: FuelPayTheme.premiumGradient,
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: const Icon(
-                  Icons.rocket_launch_rounded,
-                  color: FuelPayTheme.blackBackground,
+                  Icons.dashboard_customize_rounded,
+                  color: Colors.white,
                   size: 22,
                 ),
               ),
@@ -196,12 +197,12 @@ class _GamificationBanner extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Daily mission',
+                      'Operational summary',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      'Stay active to unlock more rewards and station perks.',
+                      'A concise view of usage, membership, and account status.',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -211,13 +212,13 @@ class _GamificationBanner extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
-                  color: FuelPayTheme.neonGreen.withValues(alpha: 0.12),
+                  color: FuelPayTheme.accent.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: Text(
-                  '${(missionProgress * 100).toStringAsFixed(0)}% XP',
+                  '${(missionProgress * 100).toStringAsFixed(0)}% complete',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: FuelPayTheme.neonGreen,
+                        color: FuelPayTheme.accent,
                         fontWeight: FontWeight.w800,
                       ),
                 ),
@@ -232,7 +233,7 @@ class _GamificationBanner extends StatelessWidget {
               minHeight: 10,
               backgroundColor: FuelPayTheme.darkSurface2,
               valueColor: const AlwaysStoppedAnimation<Color>(
-                FuelPayTheme.electricBlue,
+                FuelPayTheme.accent,
               ),
             ),
           ),

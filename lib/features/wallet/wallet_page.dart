@@ -61,6 +61,43 @@ class WalletPage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
+              AnimatedFuelPayCard(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 52,
+                      height: 52,
+                      decoration: BoxDecoration(
+                        gradient: FuelPayTheme.neonGradient,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: const Icon(
+                        Icons.workspace_premium_rounded,
+                        color: FuelPayTheme.blackBackground,
+                        size: 26,
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Membership summary',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Balance, tier status, and recent transactions at a glance.',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
               RewardTierBadge(
                 tierName: data.tierName,
                 multiplier: data.tierName.toLowerCase() == 'diamond'
@@ -86,6 +123,49 @@ class WalletPage extends ConsumerWidget {
                         padding: const EdgeInsets.only(bottom: 10),
                         child: _TransactionRow(transaction: transaction),
                       ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              AnimatedFuelPayCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Account milestones',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: const [
+                        SizedBox(
+                          width: 150,
+                          child: AchievementBadge(
+                            title: 'First session',
+                            description:
+                                'Initial activity completed on the platform.',
+                            icon: Icons.flash_on_rounded,
+                            color: FuelPayTheme.electricBlue,
+                            isUnlocked: true,
+                            unlockedDate: 'Today',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: AchievementBadge(
+                            title: 'Consistency',
+                            description:
+                                'Ongoing usage over consecutive weeks.',
+                            icon: Icons.local_fire_department_rounded,
+                            color: FuelPayTheme.neonGreen,
+                            isUnlocked: true,
+                            unlockedDate: 'This week',
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

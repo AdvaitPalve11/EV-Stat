@@ -31,7 +31,7 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(55.5 + (bottom?.preferredSize.height ?? 0));
+      Size.fromHeight(56 + (bottom?.preferredSize.height ?? 0));
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class FuelPayAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Container(
           decoration: BoxDecoration(
             color: isTransparent
-                ? backgroundColor.withValues(alpha: 0.7)
+                ? backgroundColor.withValues(alpha: 0.88)
                 : backgroundColor,
             border: Border(
               bottom: BorderSide(

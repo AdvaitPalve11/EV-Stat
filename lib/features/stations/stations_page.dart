@@ -54,6 +54,8 @@ class _StationsPageState extends ConsumerState<StationsPage> {
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 100),
               children: [
                 _StationsHeroCard(data: data),
+                const SizedBox(height: 16),
+                _StationStatusCard(data: data),
                 const SizedBox(height: 12),
                 // Fuel type selector (Petrol / Diesel)
                 Row(
@@ -190,6 +192,95 @@ class _StationsPageState extends ConsumerState<StationsPage> {
 
       return matchesQuery && matchesFilter;
     }).toList();
+  }
+}
+
+class _StationStatusCard extends StatelessWidget {
+  final AppBackendSnapshot data;
+
+  const _StationStatusCard({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = data.tierProgress.clamp(0.0, 1.0);
+
+    return AnimatedFuelPayCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  gradient: FuelPayTheme.neonGradient,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: const Icon(
+                  Icons.pin_drop_rounded,
+                  color: Colors.white,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Live station status',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'Connector availability and nearby options are updated from the backend feed.',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 10,
+              backgroundColor: FuelPayTheme.darkSurface2,
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                  FuelPayTheme.electricBlue),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: _MiniStat(
+                  label: 'Tier',
+                  value: data.tierName,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _MiniStat(
+                  label: 'Streak',
+                  value: '${data.streakDays} days',
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _MiniStat(
+                  label: 'XP',
+                  value: '${(progress * 100).toStringAsFixed(0)}%',
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 

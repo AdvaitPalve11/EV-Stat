@@ -30,6 +30,8 @@ class AnalyticsPage extends ConsumerWidget {
             children: [
               _AnalyticsHero(data: data),
               const SizedBox(height: 16),
+              _PerformancePulseCard(data: data),
+              const SizedBox(height: 16),
               AnimatedFuelPayCard(
                 child: SizedBox(
                   height: 250,
@@ -49,6 +51,22 @@ class AnalyticsPage extends ConsumerWidget {
                         padding: const EdgeInsets.only(bottom: 10),
                         child: _InsightRow(text: insight),
                       ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              AnimatedFuelPayCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Membership ladder',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 12),
+                    TierLadder(
+                      currentTierIndex: _tierIndex(data.tierName),
                     ),
                   ],
                 ),
@@ -118,6 +136,98 @@ class _AnalyticsHero extends StatelessWidget {
     return points
         .map((point) => point.value)
         .fold<double>(0, (max, value) => value > max ? value : max);
+  }
+}
+
+class _PerformancePulseCard extends StatelessWidget {
+  final AppBackendSnapshot data;
+
+  const _PerformancePulseCard({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = data.tierProgress.clamp(0.0, 1.0);
+
+    return AnimatedFuelPayCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  gradient: FuelPayTheme.neonGradient,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: const Icon(
+                  Icons.analytics_rounded,
+                  color: Colors.white,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Performance pulse',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'Usage trends, spend patterns, and membership status in one place.',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 10,
+              backgroundColor: FuelPayTheme.darkSurface2,
+              valueColor:
+                  const AlwaysStoppedAnimation<Color>(FuelPayTheme.accent),
+            ),
+          ),
+          const SizedBox(height: 12),
+          RewardTierBadge(
+            tierName: data.tierName,
+            multiplier: data.tierName.toLowerCase() == 'diamond'
+                ? 2.5
+                : data.tierName.toLowerCase() == 'platinum'
+                    ? 2.0
+                    : 1.5,
+            currentCredits: data.credits,
+            maxCredits: 5000,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+int _tierIndex(String tierName) {
+  switch (tierName.toLowerCase()) {
+    case 'bronze':
+      return 0;
+    case 'silver':
+      return 1;
+    case 'gold':
+      return 2;
+    case 'platinum':
+      return 3;
+    case 'diamond':
+      return 4;
+    default:
+      return 0;
   }
 }
 

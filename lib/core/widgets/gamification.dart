@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/theme_extended.dart';
 
-/// Reward Tier Badge - Display user's current reward tier
+/// Membership summary card - Display the user's current program tier
 class RewardTierBadge extends StatelessWidget {
   final String tierName;
   final double multiplier;
@@ -18,12 +18,12 @@ class RewardTierBadge extends StatelessWidget {
 
   Color _getTierColor() {
     return switch (tierName.toLowerCase()) {
-      'bronze' => const Color(0xFFCD7F32),
-      'silver' => const Color(0xFFC0C0C0),
-      'gold' => const Color(0xFFFFD700),
-      'platinum' => const Color(0xFFE5E4E2),
-      'diamond' => FuelPayTheme.neonGreen,
-      _ => FuelPayTheme.electricBlue,
+      'bronze' => const Color(0xFF9B6B43),
+      'silver' => const Color(0xFF8E99AD),
+      'gold' => const Color(0xFFBE9B54),
+      'platinum' => const Color(0xFFD5DCE8),
+      'diamond' => FuelPayTheme.accentSoft,
+      _ => FuelPayTheme.accent,
     };
   }
 
@@ -35,25 +35,28 @@ class RewardTierBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [tierColor.withValues(alpha: 0.2), tierColor.withValues(alpha: 0.05)],
-        ),
-        border: Border.all(color: tierColor.withValues(alpha: 0.5), width: 1.5),
-        borderRadius: BorderRadius.circular(16),
+        color: FuelPayTheme.surface,
+        border: Border.all(color: tierColor.withValues(alpha: 0.35), width: 1),
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.18),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Tier Name and Multiplier
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
-                  color: tierColor.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(8),
+                  color: tierColor.withValues(alpha: 0.14),
+                  borderRadius: BorderRadius.circular(999),
                 ),
                 child: Text(
                   tierName,
@@ -66,7 +69,7 @@ class RewardTierBadge extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  '${multiplier}x Multiplier',
+                  '${multiplier}x membership multiplier',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: FuelPayTheme.textSecondary,
                       ),
@@ -75,23 +78,21 @@ class RewardTierBadge extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          // Progress Bar
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(999),
             child: LinearProgressIndicator(
               value: progress,
               minHeight: 8,
-              backgroundColor: FuelPayTheme.charcoalCard,
+              backgroundColor: FuelPayTheme.darkSurface,
               valueColor: AlwaysStoppedAnimation<Color>(tierColor),
             ),
           ),
           const SizedBox(height: 8),
-          // Progress Text
           Text(
-            '$currentCredits / $maxCredits Credits',
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: FuelPayTheme.textTertiary),
+            '$currentCredits / $maxCredits credits used',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: FuelPayTheme.textTertiary,
+                ),
           ),
         ],
       ),
@@ -99,7 +100,7 @@ class RewardTierBadge extends StatelessWidget {
   }
 }
 
-/// Streak Meter - Display current streak and bonus
+/// Activity consistency card - Display current usage streak
 class StreakMeter extends StatelessWidget {
   final int currentStreak;
   final int streakBonus; // Percentage bonus
@@ -115,62 +116,44 @@ class StreakMeter extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            FuelPayTheme.neonGreen.withValues(alpha: 0.15),
-            FuelPayTheme.neonGreen.withValues(alpha: 0.05),
-          ],
-        ),
-        border: Border.all(
-          color: FuelPayTheme.neonGreen.withValues(alpha: 0.5),
-          width: 1.5,
-        ),
-        borderRadius: BorderRadius.circular(16),
+        color: FuelPayTheme.surface,
+        border: Border.all(color: FuelPayTheme.accent.withValues(alpha: 0.3)),
+        borderRadius: BorderRadius.circular(18),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Streak Count
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '🔥 Streak',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: FuelPayTheme.neonGreen,
-                    ),
-              ),
+              Text('Usage streak',
+                  style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: 4),
               Text(
-                '$currentStreak Days',
+                '$currentStreak days active',
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      color: FuelPayTheme.neonGreen,
+                      color: FuelPayTheme.accent,
                       fontWeight: FontWeight.w900,
                     ),
               ),
             ],
           ),
-          // Bonus Badge
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              gradient: FuelPayTheme.neonGradient,
-              borderRadius: BorderRadius.circular(12),
-            ),
+                color: FuelPayTheme.accent.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(12)),
             child: Column(
               children: [
-                Text(
-                  'Bonus',
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: FuelPayTheme.blackBackground,
-                      ),
-                ),
+                Text('Status',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall
+                        ?.copyWith(color: FuelPayTheme.accent)),
                 Text(
                   '+$streakBonus%',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: FuelPayTheme.blackBackground,
+                        color: FuelPayTheme.accent,
                         fontWeight: FontWeight.w700,
                       ),
                 ),
@@ -183,7 +166,7 @@ class StreakMeter extends StatelessWidget {
   }
 }
 
-/// Tier Ladder - Show tier progression
+/// Membership ladder - Show tier progression
 class TierLadder extends StatelessWidget {
   final List<String> tiers;
   final int currentTierIndex;
@@ -199,11 +182,11 @@ class TierLadder extends StatelessWidget {
   Color _getTierColor(int index) {
     return switch (tiers[index].toLowerCase()) {
       'bronze' => const Color(0xFFCD7F32),
-      'silver' => const Color(0xFFC0C0C0),
-      'gold' => const Color(0xFFFFD700),
-      'platinum' => const Color(0xFFE5E4E2),
-      'diamond' => FuelPayTheme.neonGreen,
-      _ => FuelPayTheme.electricBlue,
+      'silver' => const Color(0xFF8E99AD),
+      'gold' => const Color(0xFFBE9B54),
+      'platinum' => const Color(0xFFD5DCE8),
+      'diamond' => FuelPayTheme.accentSoft,
+      _ => FuelPayTheme.accent,
     };
   }
 
@@ -212,7 +195,7 @@ class TierLadder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Reward Tiers', style: Theme.of(context).textTheme.titleLarge),
+        Text('Membership tiers', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 16),
         ListView.builder(
           shrinkWrap: true,
@@ -232,7 +215,7 @@ class TierLadder extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(12),
                 color: isCurrentTier
-                    ? tierColor.withValues(alpha: 0.1)
+                    ? tierColor.withValues(alpha: 0.08)
                     : Colors.transparent,
               ),
               child: Row(
@@ -334,7 +317,7 @@ class TierLadder extends StatelessWidget {
   }
 }
 
-/// Achievement Badge - Display earned achievements/milestones
+/// Milestone card - Display earned account milestones
 class AchievementBadge extends StatelessWidget {
   final String title;
   final String description;
@@ -359,25 +342,26 @@ class AchievementBadge extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(
-          color: isUnlocked ? color.withValues(alpha: 0.5) : FuelPayTheme.borderLight,
+          color: isUnlocked
+              ? color.withValues(alpha: 0.4)
+              : FuelPayTheme.borderLight,
           width: 1.5,
         ),
         borderRadius: BorderRadius.circular(16),
         color: isUnlocked
-            ? color.withValues(alpha: 0.1)
-            : FuelPayTheme.charcoalCard.withValues(alpha: 0.5),
+            ? color.withValues(alpha: 0.08)
+            : FuelPayTheme.surface.withValues(alpha: 0.7),
       ),
       child: Column(
         children: [
-          // Badge Icon
           Container(
             width: 64,
             height: 64,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: isUnlocked
-                  ? color.withValues(alpha: 0.2)
-                  : FuelPayTheme.textTertiary.withValues(alpha: 0.1),
+                  ? color.withValues(alpha: 0.16)
+                  : FuelPayTheme.textTertiary.withValues(alpha: 0.08),
             ),
             child: Icon(
               icon,
@@ -386,7 +370,6 @@ class AchievementBadge extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          // Title
           Text(
             title,
             textAlign: TextAlign.center,
@@ -395,7 +378,6 @@ class AchievementBadge extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 4),
-          // Description
           Text(
             description,
             textAlign: TextAlign.center,
@@ -406,7 +388,7 @@ class AchievementBadge extends StatelessWidget {
           if (isUnlocked && unlockedDate != null) ...[
             const SizedBox(height: 8),
             Text(
-              'Unlocked: $unlockedDate',
+              'Completed: $unlockedDate',
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: FuelPayTheme.textTertiary,
                   ),

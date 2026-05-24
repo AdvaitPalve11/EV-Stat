@@ -120,6 +120,43 @@ class StationDetailPage extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               AnimatedFuelPayCard(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 52,
+                      height: 52,
+                      decoration: BoxDecoration(
+                        gradient: FuelPayTheme.neonGradient,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: const Icon(
+                        Icons.bolt_rounded,
+                        color: FuelPayTheme.blackBackground,
+                        size: 26,
+                      ),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Live connector overview',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Reserve this stop and keep your operations moving with current availability data.',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              AnimatedFuelPayCard(
                 child: SizedBox(
                   height: 220,
                   child: _OccupancyChart(station: station),
@@ -144,6 +181,29 @@ class StationDetailPage extends ConsumerWidget {
                     const SizedBox(height: 12),
                     _InfoRow(
                         label: 'Status', value: _statusLabel(station.health)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              AnimatedFuelPayCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Membership status',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 12),
+                    RewardTierBadge(
+                      tierName: data.tierName,
+                      multiplier: data.tierName.toLowerCase() == 'diamond'
+                          ? 2.5
+                          : data.tierName.toLowerCase() == 'platinum'
+                              ? 2.0
+                              : 1.5,
+                      currentCredits: data.credits,
+                      maxCredits: 5000,
+                    ),
                   ],
                 ),
               ),
